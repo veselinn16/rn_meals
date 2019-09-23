@@ -15,26 +15,23 @@ const MealItem = ({
   affordability,
   image
 }) => (
-  <View style={styles.mealItem}>
-    <TouchableOpacity onPress={onSelectMeal}>
-      <View>
-        <View stlye={{ ...styles.row, ...styles.mealHeader }}>
-          <ImageBackground source={{ uri: image }} style={styles.bgImage}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title} numberOfLines={1}>
-                {title}
-              </Text>
-            </View>
-          </ImageBackground>
+  <TouchableOpacity style={styles.mealItem} onPress={onSelectMeal}>
+    <View stlye={{ ...styles.row, ...styles.mealHeader }}>
+      <ImageBackground source={{ uri: image }} style={styles.bgImage}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title} numberOfLines={1}>
+            {title}
+          </Text>
         </View>
-        <View stlye={{ ...styles.row, ...styles.mealDetails }}>
-          <Text>{duration}m</Text>
-          <Text>{complexity.toUpperCase()}</Text>
-          <Text>{affordability.toUpperCase()}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  </View>
+      </ImageBackground>
+    </View>
+    {/* MAKE THIS WORK */}
+    {/* <View stlye={{ backgroundColor: "red" }}> */}
+    {/* <Text>{duration}m</Text> */}
+    {/* <Text>{complexity.toUpperCase()}</Text> */}
+    {/* <Text>{affordability.toUpperCase()}</Text> */}
+    {/* </View> */}
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
@@ -43,7 +40,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#f5f5f5",
     borderRadius: 10,
-    overflow: "hidden"
+    overflow: "hidden",
+    marginVertical: 10
   },
   bgImage: {
     width: "100%",
