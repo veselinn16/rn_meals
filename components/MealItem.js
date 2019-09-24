@@ -7,6 +7,8 @@ import {
   StyleSheet
 } from "react-native";
 
+import StyledText from "../components/StyledText";
+
 const MealItem = ({
   title,
   onSelectMeal,
@@ -26,11 +28,11 @@ const MealItem = ({
       </ImageBackground>
     </View>
     {/* MAKE THIS WORK */}
-    {/* <View stlye={{ backgroundColor: "red" }}> */}
-    {/* <Text>{duration}m</Text> */}
-    {/* <Text>{complexity.toUpperCase()}</Text> */}
-    {/* <Text>{affordability.toUpperCase()}</Text> */}
-    {/* </View> */}
+    <View stlye={{ ...styles.row, ...styles.mealDetails }}>
+      <StyledText>{duration}m</StyledText>
+      <StyledText>{complexity.toUpperCase()}</StyledText>
+      <StyledText>{affordability.toUpperCase()}</StyledText>
+    </View>
   </TouchableOpacity>
 );
 
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
   },
   mealDetails: {
     height: "15%",
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     justifyContent: "space-between"
   }
 });

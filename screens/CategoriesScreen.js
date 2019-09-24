@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { CATEGORIES } from "../data/testData";
 import CategoryGridTile from "../components/CategoryGridTile";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 
 const CategoriesScreen = ({ navigation }) => {
   const renderGridItem = itemData => (
@@ -28,6 +30,24 @@ const CategoriesScreen = ({ navigation }) => {
       numColumns={2}
     />
   );
+};
+
+CategoriesScreen.navigationOptions = navData => {
+  return {
+    headerTitle: "Meal Categories",
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          iconName="ios-menu"
+          title="menu"
+          size={23}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
 };
 
 const styles = StyleSheet.create({
