@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  Text,
-  Button,
-  StyleSheet
-} from "react-native";
+import { View, ScrollView, Image, Text, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import StyledText from "../components/StyledText";
