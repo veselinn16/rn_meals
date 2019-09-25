@@ -109,7 +109,7 @@ const tabScreenConfig = {
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
         ) : (
-          "Meals"
+          "Favorites"
         )
     }
   }

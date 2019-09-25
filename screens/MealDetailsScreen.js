@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { View, ScrollView, Image, Text, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import StyledText from "../components/StyledText";
+import { toggleFavorite } from "../store/actions/meals";
+import { useDispatch, useSelector } from "react-redux";
 
 const ListItem = props => {
   return (
@@ -12,8 +14,27 @@ const ListItem = props => {
   );
 };
 
-const CategoriesScreen = ({ navigation }) => {
+const MealDetailsScreen = ({ navigation }) => {
   const meal = navigation.getParam("meal");
+  const isAfavoriteMeal = useSelector(state =>
+    state.meals.favoriteMeals.find(curMeal => curMeal === meal)
+  );
+
+  const dispatch = useDispatch();
+
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(meal.id));
+  }, [dispatch, meal.id]);
+
+  useEffect(() => {
+    navigation.setParams({
+      toggleFav: toggleFavoriteHandler
+    });
+  }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    navigation.setParams({ isFav: isAfavoriteMeal });
+  }, [isAfavoriteMeal]);
 
   return (
     <ScrollView>
@@ -39,15 +60,17 @@ const CategoriesScreen = ({ navigation }) => {
   );
 };
 
-CategoriesScreen.navigationOptions = navigationData => {
+MealDetailsScreen.navigationOptions = navigationData => {
+  const favHandler = navigationData.navigation.getParam("toggleFav");
+  const isFav = navigationData.navigation.getParam("isFav");
   return {
     headerTitle: navigationData.navigation.getParam("meal").title,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
-          iconName="ios-star"
-          onPress={() => console.log("marked as fav")}
+          iconName={isFav ? "ios-star" : "ios-star-outline"}
+          onPress={favHandler}
         />
       </HeaderButtons>
     )
@@ -79,4 +102,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CategoriesScreen;
+export default MealDetailsScreen;
